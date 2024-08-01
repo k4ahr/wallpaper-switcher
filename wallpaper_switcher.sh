@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing your wallpapers
-WALLPAPER_DIR="$HOME/wallpaper_switcher/wallpaper"
+WALLPAPER_DIR="$HOME/wallpaper-switcher/wallpaper"
 
 # List all image files in the directory
 WALLPAPERS=($(ls "$WALLPAPER_DIR"/*.{jpg,jpeg,png} 2> /dev/null))
