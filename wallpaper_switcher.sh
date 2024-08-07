@@ -3,9 +3,16 @@
 # Directory containing your wallpapers
 WALLPAPER_DIR="$HOME/wallpaper-switcher/wallpaper"
 
-# List all image files in the directory and store both full paths and filenames
+# List all image files in the directory and store both full paths and processed filenames
 WALLPAPERS=($(ls "$WALLPAPER_DIR"/*.{jpg,jpeg,png} 2> /dev/null))
-FILENAMES=($(basename -a "${WALLPAPERS[@]}"))
+FILENAMES=()
+
+for WALLPAPER in "${WALLPAPERS[@]}"; do
+    BASENAME=$(basename "$WALLPAPER")
+    FILENAME_WITHOUT_EXT="${BASENAME%.*}"
+    CAPITALIZED_NAME=$(echo "$FILENAME_WITHOUT_EXT" | sed 's/.*/\u&/')
+    FILENAMES+=("$CAPITALIZED_NAME")
+done
 
 # If no wallpapers are found, exit the script
 if [ ${#FILENAMES[@]} -eq 0 ]; then
@@ -13,12 +20,12 @@ if [ ${#FILENAMES[@]} -eq 0 ]; then
     exit 1
 fi
 
-# Use wofi to select a wallpaper (only showing filenames)
-SELECTED_FILENAME=$(printf "%s\n" "${FILENAMES[@]}" | wofi --dmenu --prompt="Select a wallpaper")
+# Use wofi to select a wallpaper (showing capitalized filenames without extensions)
+SELECTED_NAME=$(printf "%s\n" "${FILENAMES[@]}" | wofi --dmenu --prompt="Select a wallpaper")
 
-# Find the full path corresponding to the selected filename
+# Map the selected name back to the corresponding full path
 for i in "${!FILENAMES[@]}"; do
-    if [ "${FILENAMES[$i]}" == "$SELECTED_FILENAME" ]; then
+    if [ "${FILENAMES[$i]}" == "$SELECTED_NAME" ]; then
         SELECTED="${WALLPAPERS[$i]}"
         break
     fi
@@ -31,7 +38,7 @@ echo "Selected wallpaper: $SELECTED" >> /tmp/wallpaper_switcher.log
 if [ -n "$SELECTED" ]; then
     swww img "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
     wal -i "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
-    pywal-spicetify text >> /tmp/wallpaper_switcher.log 2>&1
+    pywal-spicetify >> /tmp/wallpaper_switcher.log 2>&1
 else
     echo "No wallpaper selected." >> /tmp/wallpaper_switcher.log
 fi
