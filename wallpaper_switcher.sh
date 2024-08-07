@@ -31,7 +31,7 @@ echo "Selected wallpaper: $SELECTED" >> /tmp/wallpaper_switcher.log
 if [ -n "$SELECTED" ]; then
     swww img "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
     wal -i "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
-    pywal-spicetify >> /tmp/wallpaper_switcher.log 2>&1
+    pywal-spicetify text >> /tmp/wallpaper_switcher.log 2>&1
 else
     echo "No wallpaper selected." >> /tmp/wallpaper_switcher.log
 fi
