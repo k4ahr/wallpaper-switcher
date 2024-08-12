@@ -39,7 +39,7 @@ if [ -n "$SELECTED" ]; then
     swww img "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
     wal -i "$SELECTED" >> /tmp/wallpaper_switcher.log 2>&1
     pywal-spicetify text >> /tmp/wallpaper_switcher.log 2>&1
-    sh .script/wofi_waybar.sh >> /tmp/wallpaper_switcher.log 2>&1
+    sh .script/wofi_pywal.sh >> /tmp/wallpaper_switcher.log 2>&1
 else
     echo "No wallpaper selected." >> /tmp/wallpaper_switcher.log
 fi
