@@ -12,7 +12,7 @@ A simple script written in bash using Wofi and Swww to change wallpaper, with py
 
 ## Feature & Dependencies
 
-***Switch is originally a script for one of my [Hyprland's dotfiles](https://github.com/k4ahr/dotfiles), which being included multiple features related to pywal.***
+***Switcher is originally a script for one of my [Hyprland's dotfiles](https://github.com/k4ahr/dotfiles), which being included multiple features related to pywal.***
 
 These are minimum requirements in order to Switcher works:
 * [Swww](https://github.com/dylanaraps/pywal): Changing wallpapers (of course)
