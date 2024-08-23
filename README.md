@@ -21,6 +21,7 @@ These are minimum requirements in order to Switcher works:
 Other optional dependencies that supported:
 * [Pywal](https://github.com/dylanaraps/pywal): For generate and apply a palette of colors from the selected wallpapers
 * [pywal-spicetify](https://github.com/jhideki/pywal-spicetify): A simple cli tool for applying wal generated colors to Spicetify.
+* [pywalfox](https://github.com/Frewacom/pywalfox): Pywal dynamic theming of Firefox.
 
 ## Installation
 
